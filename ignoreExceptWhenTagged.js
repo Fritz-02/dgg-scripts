@@ -39,7 +39,7 @@ function createSetting(setting) {
     settingInput.value = storage[setting.storageName] == "[]" ? "" : storage[setting.storageName];
 
     settingInput.addEventListener("change", () => {
-        let val = settingInput.value.toLowerCase().replace(" ", "").split(",");
+        let val = settingInput.value.toLowerCase().replace(" ", "").split(",").filter(String);
         //console.log(val);
         if (settingInput.value.length > 0) {
             storage[setting.storageName] = val;
