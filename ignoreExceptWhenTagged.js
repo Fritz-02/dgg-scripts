@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ignore Except When Tagged
 // @namespace    https://www.destiny.gg/
-// @version      1.0
+// @version      1.0.1
 // @description  Does what /ignore does, except you'll see messages you're tagged in.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
