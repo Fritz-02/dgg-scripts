@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ignore Except When Tagged
 // @namespace    https://www.destiny.gg/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Does what /ignore does, except you'll see messages you're tagged in.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -39,7 +39,7 @@ function createSetting(setting) {
     settingInput.value = storage[setting.storageName] == "[]" ? "" : storage[setting.storageName];
 
     settingInput.addEventListener("change", () => {
-        let val = settingInput.value.toLowerCase().replace(" ", "").split(",").filter(String);
+        let val = settingInput.value.toLowerCase().replaceAll(" ", "").split(",").filter(String);
         //console.log(val);
         if (settingInput.value.length > 0) {
             storage[setting.storageName] = val;
