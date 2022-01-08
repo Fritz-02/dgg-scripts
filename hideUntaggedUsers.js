@@ -21,7 +21,7 @@ const observer = new MutationObserver(mutations => {
         for (let i = 0; i < mutation.addedNodes.length; i++) {
             let message = mutation.addedNodes[i];
             let username = message.getAttribute("data-username");
-            if (message.className.includes("msg-highlight") || taggedUsers.includes(username)) {
+            if (message.className.includes("msg-highlight") || message.className.includes("msg-own") || taggedUsers.includes(username)) {
                 continue;
             } else {
                 message.remove();
