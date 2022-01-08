@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide Untagged Users
 // @namespace    https://www.destiny.gg/
-// @version      0.1.0
+// @version      0.1.1
 // @description  Hides untagged users' messages except when tagged
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
