@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide Untagged Users
 // @namespace    https://www.destiny.gg/
-// @version      0.1.1
+// @version      0.1.2
 // @description  Hides untagged users' messages except when tagged
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -14,6 +14,7 @@
 
 const tagList = window.localStorage.getItem("chat.settings") ? JSON.parse(window.localStorage.getItem("chat.settings"))[11][1] : [];
 const taggedUsers = tagList.map(item => item[0]);
+const msgTypes = ["msg-highlight", "msg-own", "msg-ui", "msg-status", "msg-info", "msg-whisper", "msg-broadcast"];
 
 
 const observer = new MutationObserver(mutations => {
@@ -21,7 +22,7 @@ const observer = new MutationObserver(mutations => {
         for (let i = 0; i < mutation.addedNodes.length; i++) {
             let message = mutation.addedNodes[i];
             let username = message.getAttribute("data-username");
-            if (message.className.includes("msg-highlight") || message.className.includes("msg-own") || taggedUsers.includes(username)) {
+            if (msgTypes.some(v => message.className.includes(v)) || taggedUsers.includes(username)) {
                 continue;
             } else {
                 message.remove();
