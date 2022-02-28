@@ -1,91 +1,24 @@
 // ==UserScript==
 // @name         DGG NSFW Ignorer
 // @namespace    https://www.destiny.gg/
-// @version      1.0.1
+// @version      1.1.0
 // @description  Ignores NSFW messages from specified chatters.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreNSFW.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreNSFW.js
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none
+// @require      https://raw.githubusercontent.com/Fritz-02/dgg-scripts/main/dggFunctions.js
 // ==/UserScript==
 
-const storage = {};
-storage.nsfwIgnoredChatters = window.localStorage.getItem("nsfwIgnoredChatters") ? JSON.parse(window.localStorage.getItem("nsfwIgnoredChatters")) : [];
-storage.nsfwShowMentions = window.localStorage.getItem("nsfwShowMentions") ? JSON.parse(window.localStorage.getItem("nsfwShowMentions")) : false;
+
+createStorageItem("nsfwIgnoredChatters", []);
+createStorageItem("nsfwShowMentions", false);
 
 console.log(storage);
 
-
-// Settings
-const settings = document.querySelector("#chat-settings-form");
-
-
-function createSetting(setting) {
-    let settingGroup = document.createElement("div");
-    settingGroup.className = "form-group row";
-
-    let settingLabel = document.createElement("label");
-    settingLabel.innerHTML = setting.text;
-    if (setting.hint) {settingLabel.title = setting.hint};
-    settingGroup.appendChild(settingLabel);
-
-    let settingInput;
-    let appendToGroup = true;
-    switch (setting.type) {
-        case 'textarea':
-            settingInput = document.createElement("textarea");
-            settingInput.style.resize = "vertical";
-            settingInput.className = "form-control";
-            settingInput.placeholder = setting.placeholder;
-
-            settingInput.value = storage[setting.storageName] == "[]" ? "" : storage[setting.storageName];
-
-            settingInput.addEventListener("change", () => {
-                let val = settingInput.value.toLowerCase().replaceAll(" ", "").split(",").filter(String);
-                console.log(val);
-                if (settingInput.value.length > 0) {
-                    storage[setting.storageName] = val;
-                    window.localStorage.setItem(
-                        setting.storageName, JSON.stringify(val)
-                    );
-                } else {
-                    storage[setting.storageName] = [];
-                    window.localStorage.setItem(
-                        setting.storageName, JSON.stringify(storage[setting.storageName])
-                    );
-                }
-            });
-            break;
-        case "checkbox":
-            settingGroup.className = "form-group checkbox";
-
-            settingInput = document.createElement("input");
-            if (setting.name) {settingLabel.name = setting.name};
-            settingInput.type = "checkbox";
-            settingInput.checked = storage[setting.storageName];
-
-            settingInput.addEventListener("change", () => {
-                storage[setting.storageName] = settingInput.checked;
-                window.localStorage.setItem(
-                    setting.storageName,
-                    settingInput.checked
-                );
-            });
-            settingLabel.prepend(settingInput);
-            appendToGroup = false;
-            break;
-        default:
-            console.log("Invalid input type");
-    }
-    if (appendToGroup) {settingGroup.appendChild(settingInput);}
-    settings.appendChild(settingGroup);
-}
-
-
-// Change/add/remove the follow to create your script's settings
-let settingGroup = document.createElement("h4");
-settingGroup.innerHTML = "nsfw ignore list";
-settings.appendChild(settingGroup);
+newSettingGroup("ignore except when tagged");
 createSetting({
     "text": "Ignored NSFW posters",
     "type": "textarea",
