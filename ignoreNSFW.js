@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DGG NSFW Ignorer
 // @namespace    https://www.destiny.gg/
-// @version      1.1.1
+// @version      1.1.2
 // @description  Ignores NSFW messages from specified chatters.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -19,7 +19,7 @@ createStorageItem("nsfwShowMentions", false);
 
 console.log(storage);
 
-newSettingGroup("ignore except when tagged");
+newSettingGroup("ignore nsfw posters");
 createSetting({
     "text": "Ignored NSFW posters",
     "type": "textarea",
