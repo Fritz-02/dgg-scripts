@@ -2,9 +2,12 @@
 // @name         DGG NSFW Link Shortener
 // @namespace    https://www.destiny.gg/
 // @version      1.0
-// @description  Shortens extremely long nsfw links
+// @description  Shortens extremely long nsfw links in chat
 // @author       Fritz
 // @match        www.destiny.gg/embed/chat*
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/nsfwLinkShortener.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/nsfwLinkShortener.js
+// @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none
 // @require      https://raw.githubusercontent.com/Fritz-02/dgg-scripts/main/dggFunctions.js
@@ -25,7 +28,6 @@ const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
         for (let i = 0; i < mutation.addedNodes.length; i++) {
             let message = mutation.addedNodes[i];
-            let embeds = message.querySelectorAll(".externallink.bookmarklink");
             let nsfwLinks = message.querySelectorAll(".externallink.nsfw-link");
             nsfwLinks.forEach((link) => {
                 let nsfwText = link.innerText;
