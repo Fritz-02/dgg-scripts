@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ignore Except When Tagged
 // @namespace    https://www.destiny.gg/
-// @version      1.2.2
+// @version      1.3.0
 // @description  Does what /ignore does, except you'll see messages you're tagged in.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -30,6 +30,7 @@ createSetting({
     "placeholder": "Comma separated...",
     "storageName": "iewt-harshIgnored"
 });
+let prevMsgDeleted = false;
 
 
 const observer = new MutationObserver(mutations => {
@@ -44,7 +45,14 @@ const observer = new MutationObserver(mutations => {
             }
             if (storage["iewt-ignored"].includes(username) || storage["iewt-harshIgnored"].includes(username)|| storage["iewt-harshIgnored"].some(v => text.includes(v))) {
                 message.remove();
+                prevMsgDeleted = true;
+            } else {
+                if (message.className.includes("msg-continue") && prevMsgDeleted) {
+                    message.classList.remove("msg-continue");
+                }
+                prevMsgDeleted = false;
             }
+
         }
     });
 });
