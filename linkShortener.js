@@ -1,39 +1,47 @@
 // ==UserScript==
-// @name         DGG Link Shortener
+// @name         [dev] DGG Link Shortener
 // @namespace    https://www.destiny.gg/
-// @version      1.0
-// @description  Shortens extremely long links in chat
+// @version      dev-2022.09.23
+// @description  Shortens extremely long links in chat.
 // @author       Fritz
-// @match        www.destiny.gg/embed/chat*
-// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/linkShortener.js
-// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/linkShortener.js
+// @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/dev/linkShortener.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/dev/linkShortener.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none
-// @require      https://raw.githubusercontent.com/Fritz-02/dgg-scripts/main/dggFunctions.js
+// @require      https://raw.githubusercontent.com/Fritz-02/dgg-scripts/main/dggFunctions/dggFunctions-1.0.0.min.js
 // ==/UserScript==
 
-createStorageItem("linkMaxLength", 150);
-newSettingGroup("link shortener");
-createSetting({
-    "text": "Link Max Length",
-    "type": "input-number",
-    "name": "Link Max Length",
-    "placeholder": 100,
-    "min": 10,
-    "storageName": "linkMaxLength"
-});
+const settingItems = [
+    new SettingItem("linkMaxLength", 150, "input-number", {
+      text: "Link Max Length",
+      name: "Link Max Length",
+      placeholder: 100,
+      min: 10,
+    }),
+    new SettingItem("onlyNSFW", false, "checkbox", {
+        text: "Only shorten NSFW links",
+        name: "nsfwMentionCheckbox"
+      }),
+  ];
+const settings = new Settings(
+    "Link Shortener",
+    settingItems,
+    "fritz-shortener."
+);
+settings.build();
 
 const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
         for (let i = 0; i < mutation.addedNodes.length; i++) {
-            let message = mutation.addedNodes[i];
-            let links = message.querySelectorAll(".externallink");
+            const message = mutation.addedNodes[i];
+            const links = message.querySelectorAll(settings.onlyNSFW ? ".externallink.nsfw-link" : ".externallink");
+            const maxLength = settings.linkMaxLength;
             links.forEach((link) => {
-                let linkText = link.innerText;
-                if (linkText.length > storage.linkMaxLength) {
-                    let newText = linkText.slice(0, storage.linkMaxLength - 3) + "...";
-                    link.textContent = newText;
+                const linkText = link.innerText;
+                if (linkText.length > maxLength) {
+                    link.textContent = linkText.slice(0, maxLength - 3) + "...";
                 }
             });
         }
