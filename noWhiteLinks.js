@@ -5,8 +5,8 @@
 // @description  Removes any links posted by white names (except for white names with flairs)
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
-// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/dev/noWhiteLinks.js
-// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/dev/noWhiteLinks.js
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/noWhiteLinks.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/noWhiteLinks.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none

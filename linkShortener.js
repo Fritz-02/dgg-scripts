@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         [dev] DGG Link Shortener
+// @name         DGG Link Shortener
 // @namespace    https://www.destiny.gg/
-// @version      dev-2022.09.23
+// @version      2.0.0
 // @description  Shortens extremely long links in chat.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
-// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/dev/linkShortener.js
-// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/dev/linkShortener.js
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/linkShortener.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/linkShortener.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none

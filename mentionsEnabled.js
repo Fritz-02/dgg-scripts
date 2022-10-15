@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         [dev] DGG Mentions Fixed
+// @name         DGG Mentions Fixed
 // @namespace    https://www.destiny.gg/
-// @version      dev-2022.09.29
+// @version      1.0.0
 // @description  If /mentions is disabled, this will just replace the disabled message
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
-// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/dev/mentionsEnabled.js
-// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/dev/mentionsEnabled.js
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/mentionsEnabled.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/mentionsEnabled.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none

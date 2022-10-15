@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         [dev] DGG NSFW Ignorer
+// @name         DGG NSFW Ignorer
 // @namespace    https://www.destiny.gg/
-// @version      dev-2022.09.23
+// @version      2.0.0
 // @description  Ignores NSFW messages from specified chatters.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
-// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/dev/ignoreNSFW.js
-// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/dev/ignoreNSFW.js
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreNSFW.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreNSFW.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none

@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         [dev] Ignore Except When Tagged
+// @name         Ignore Except When Tagged
 // @namespace    https://www.destiny.gg/
-// @version      dev-2022.09.23
+// @version      2.0.0
 // @description  Does what /ignore does (and more), except you'll see messages you're tagged in.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
-// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/dev/ignoreExceptWhenTagged.js
-// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/dev/ignoreExceptWhenTagged.js
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreExceptWhenTagged.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreExceptWhenTagged.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none
