@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DGG Mentions/Stalk Fixed
 // @namespace    https://www.destiny.gg/
-// @version      1.1.1
+// @version      1.2.0
 // @description  Fixes /mentions and /stalk while OverRustle is down, and when /mentions is disabled
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -175,19 +175,19 @@ function getRustleSearchStalk(username) {
   rustleSearch({ username: username });
 }
 
-function getRustleSearchMentions() {
+function getRustleSearchMentions(username) {
   if (settings.username) {
     new DGGMsg(
-      `[MSFixed] Getting last ${settings.mentions} mentions for ${settings.username} from RustleSearch.dev...`,
+      `[MSFixed] Getting last ${settings.mentions} mentions for ${username} from RustleSearch.dev...`,
       "",
       "msg-info"
     ).update();
-    rustleSearch({ text: settings.username });
+    rustleSearch({ text: username });
   }
 }
 
 const noMentionsReceivedRegex =
-  /^No mentions for \S* received. Try again later$/;
+  /^No mentions for (\S*) received. Try again later$/;
 const noMessagesReceivedRegex =
   /^No messages for (\S*) received. Try again later$/;
 
@@ -203,10 +203,9 @@ const observer = new MutationObserver((mutations) => {
             "The `/mentions` command is disabled. [DGG Mentions Fixed: Retrieving mentions...]";
           getMentions();
         } else if (noMentionsReceivedRegex.test(text)) {
-          getRustleSearchMentions();
+          getRustleSearchMentions(noMentionsReceivedRegex.exec(text)[1]);
         } else if (noMessagesReceivedRegex.test(text)) {
-          let match = noMessagesReceivedRegex.exec(text);
-          getRustleSearchStalk(match[1]);
+          getRustleSearchStalk(noMessagesReceivedRegex.exec(text)[1]);
         }
       }
     }
