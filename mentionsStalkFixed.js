@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DGG Mentions/Stalk Fixed
 // @namespace    https://www.destiny.gg/
-// @version      1.1.0
+// @version      1.1.1
 // @description  Fixes /mentions and /stalk while OverRustle is down, and when /mentions is disabled
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -168,7 +168,7 @@ function getRustleSearchStalk(username) {
     "msg-info"
   ).update();
   new DGGMsg(
-    `Stalked ${username} last seen (i'll add something here later)`,
+    `Stalked ${username}`,
     "",
     "msg-info"
   ).update();
