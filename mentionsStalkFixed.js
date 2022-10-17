@@ -163,7 +163,7 @@ function rustleSearch({ username = "", text = "" }) {
 
 function getRustleSearchStalk(username) {
   new DGGMsg(
-    `[MSFixed] Getting messagse for ${username}...`,
+    `[MSFixed] Getting messages for ${username}...`,
     "",
     "msg-info"
   ).update();
