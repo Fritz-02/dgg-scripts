@@ -11,6 +11,8 @@
 // @grant        none
 // ==/UserScript==
 
+// OBSOLETE due to the /unignoreall command being added
+
 if (
   confirm(
     "Are you sure you want to clear your DGG ignore list? I am not liable for any issues that come up (tag list accidently getting wiped, etc.)"
