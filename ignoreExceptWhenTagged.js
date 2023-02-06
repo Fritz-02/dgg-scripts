@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ignore Except When Tagged
 // @namespace    https://www.destiny.gg/
-// @version      2.0.0
+// @version      2.1.0
 // @description  Does what /ignore does (and more), except you'll see messages you're tagged in.
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -10,7 +10,7 @@
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none
-// @require      https://raw.githubusercontent.com/Fritz-02/dgg-scripts/main/dggFunctions/dggFunctions-1.0.0.min.js
+// @require      https://raw.githubusercontent.com/Fritz-02/dgg-scripts/main/dggFunctions/dggFunctions-1.1.0.min.js
 // ==/UserScript==
 
 const settingItems = [
@@ -29,7 +29,6 @@ const settings = new Settings(
   "iewt-"
 );
 settings.build();
-
 
 let prevMsgDeleted = false;
 const ignoredClassNames = ["msg-highlight", "msg-historical", "msg-own"];
@@ -62,5 +61,4 @@ const observer = new MutationObserver((mutations) => {
   });
 });
 
-let target = document.querySelector(".chat-lines.nano-content");
-observer.observe(target, { childList: true });
+observer.observe(chatLines, { childList: true });
