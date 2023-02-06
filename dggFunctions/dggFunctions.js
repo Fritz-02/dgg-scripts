@@ -1,6 +1,8 @@
-// A group of classes used in dgg userscripts.
+// A group of classes and variables used in dgg userscripts.
 const settingsForm = document.querySelector("#chat-settings-form");
+const chatLines = document.querySelector(".chat-lines");
 
+// Settings
 class SettingItem {
   constructor(keyName, defaultValue, type, options) {
     this.keyName = keyName;
@@ -167,4 +169,26 @@ class Settings {
       item.build();
     }
   }
+}
+
+// chat user info
+const userInfo = document.querySelector("div.user-info");
+const actionButtons = document.querySelector("div.action-buttons");
+
+function insertInfoHeader(text, className, beforeNode) {
+  const header = document.createAttribute("h5");
+  header.setAttribute("class", className);
+  header.innerHTML = text;
+  userInfo.insertBefore(header, beforeNode);
+  return header;
+}
+
+function addAction(id, title) {
+  let action = document.createElement("a");
+  action.setAttribute("id", id);
+  action.setAttribute("title", title);
+  let i = document.createElement("i");
+  i.setAttribute("class", "btn-icon");
+  action.appendChild(i);
+  actionButtons.appendChild(action);
 }
