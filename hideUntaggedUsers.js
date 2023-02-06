@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide Untagged Users
 // @namespace    https://www.destiny.gg/
-// @version      0.1.4
+// @version      0.1.5
 // @description  Hides untagged users' messages except when tagged
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -31,5 +31,5 @@ const observer = new MutationObserver(mutations => {
     });
 });
 
-let target = document.querySelector('.chat-lines.nano-content');
+let target = document.querySelector('.chat-lines');
 observer.observe(target, {childList: true});

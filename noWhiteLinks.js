@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DGG No White Links
 // @namespace    https://www.destiny.gg/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Removes any links posted by white names (except for white names with flairs)
 // @author       Fritz
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
@@ -28,5 +28,5 @@ const observer = new MutationObserver((mutations) => {
   });
 });
 
-let target = document.querySelector(".chat-lines.nano-content");
+let target = document.querySelector(".chat-lines");
 observer.observe(target, { childList: true });
