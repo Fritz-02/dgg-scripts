@@ -1,12 +1,13 @@
 // ==UserScript==
-// @name         Ignore Watchers
+// @name         Ignore Embedders
 // @namespace    https://www.destiny.gg/
-// @version      1.0.0
+// @version      1.1.0
 // @description  Ignores people who are watching certain embeds
 // @author       Fritz
+// @match        *://*.destiny.gg/embed/chat*
 // @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
-// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreWatchers.js
-// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreWatchers.js
+// @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreEmbedders.js
+// @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreEmbedders.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
 // @icon         https://www.google.com/s2/favicons?domain=destiny.gg
 // @grant        none
@@ -14,14 +15,18 @@
 // ==/UserScript==
 
 const settingItems = [
-  new SettingItem("ignoredWatchers", [], "textarea", {
+  new SettingItem("ignoredEmbedders", [], "textarea", {
     text: "Ignore people watching...",
     placeholder: "Comma separated... (e.g. destiny,hasanabi,obamna)",
   }),
+  new SettingItem("mentionsEnabled", false, "checkbox", {
+    text: "Show mentions?",
+  }),
 ];
-const settings = new Settings("ignore watchers", settingItems, "fritz-");
+const settings = new Settings("ignore embedders", settingItems, "fritz-");
 settings.build();
 
+let mentionRegex = null;
 let property = Object.getOwnPropertyDescriptor(MessageEvent.prototype, "data");
 const data = property.get;
 function lookAtMessage() {
@@ -33,11 +38,14 @@ function lookAtMessage() {
   let dataArray = msg.split(/ (.*)/s);
   const msgType = dataArray[0];
   const msgData = JSON.parse(dataArray[1]);
-  if (msgType == "MSG") {
+  if (msgType == "ME") {
+    mentionRegex = new RegExp(msgData.nick, "i");
+  } else if (msgType == "MSG") {
     const watchingId = msgData?.watching?.id;
     if (
       watchingId &&
-      settings.ignoredWatchers.includes(watchingId.toLowerCase())
+      settings.ignoredEmbedders.includes(watchingId.toLowerCase()) &&
+      (!mentionRegex?.test(msgData.data) || !settings.mentionsEnabled)
     ) {
       return;
     }
