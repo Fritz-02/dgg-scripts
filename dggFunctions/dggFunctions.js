@@ -95,6 +95,21 @@ class SettingItem {
           }
         });
         break;
+      case "textarea-noLower":
+        input = document.createElement("textarea");
+        input.style.resize = "vertical";
+        input.className = "form-control";
+        input.placeholder = this.options.placeholder;
+        input.value = this.parent[this.keyName];
+        input.addEventListener("change", () => {
+          let val = input.value.replaceAll(" ", "").split(",").filter(String);
+          if (input.value.length > 0) {
+            this.parent[this.keyName] = val;
+          } else {
+            this.parent[this.keyName] = [];
+          }
+        });
+        break;
       case "input":
         input = document.createElement("input");
         input.className = "form-control";
