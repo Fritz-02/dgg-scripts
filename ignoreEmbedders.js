@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Ignore Embedders
 // @namespace    https://www.destiny.gg/
-// @version      1.1.0
+// @version      1.1.1
 // @description  Ignores people who are watching certain embeds
 // @author       Fritz
 // @match        *://*.destiny.gg/embed/chat*
-// @include      /https?:\/\/www\.destiny\.gg\/embed\/chat/
+// @include      http://www.destiny.gg/embed/chat/*
+// @include      https://www.destiny.gg/embed/chat/*
 // @downloadURL  https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreEmbedders.js
 // @updateURL    https://github.com/Fritz-02/dgg-scripts/raw/main/ignoreEmbedders.js
 // @homepageURL  https://github.com/Fritz-02/dgg-scripts
@@ -13,6 +14,16 @@
 // @grant        none
 // @require      https://raw.githubusercontent.com/Fritz-02/dgg-scripts/main/dggFunctions/dggFunctions-1.1.0.min.js
 // ==/UserScript==
+
+/*
+Instructions:
+1. Install with Tampermonkey or similar extension
+2. Open DGG chat
+3. Open chat settings (cogwheel below chat)
+4. Scroll down until you see the "IGNORE EMBEDDERS" settings
+5. Put in embeds you want ignored, separated by a comma (e.g. hasanabi,xqc,obamna).
+   Use the embed ID (#platform/ID, e.g. #kick/xqc).
+*/
 
 const settingItems = [
   new SettingItem("ignoredEmbedders", [], "textarea", {
