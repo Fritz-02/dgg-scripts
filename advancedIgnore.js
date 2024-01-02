@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Advanced Ignore
 // @namespace    https://www.destiny.gg/
-// @version      1.0.0
+// @version      1.1.0
 // @description  Adds more ignore settings (embeds, nsfw, separate ignore and harsh ignore, allow mentions to be shown)
 // @author       Fritz
 // @match        *://*.destiny.gg/embed/chat*
@@ -49,18 +49,24 @@ const settingItems = [
   new SettingItem("hideSub", false, "checkbox", {
     text: "Hide sub messages",
   }),
+  new SettingItem("hideNewUsers", false, "checkbox", {
+    text: "Hide new users",
+  }),
 ];
 const settings = new Settings("Advanced Ignore", settingItems, "fritz-");
 settings.build();
 
 let mentionRegex = null;
 const regexNSFW = /\bnsf[wl]\b/i;
+const newUserFlair = "flair58";
 
 let property = Object.getOwnPropertyDescriptor(MessageEvent.prototype, "data");
 const data = property.get;
 
 const isSubMsg = (msgType) =>
   msgType == "SUBSCRIPTION" || msgType == "GIFTSUB" || msgType == "DONATION";
+
+const isNewUser = (msgData) => msgData.features.includes(newUserFlair);
 
 const checkMention = (msgData) =>
   !(settings.mentionsEnabled && mentionRegex?.test(msgData.data));
@@ -102,7 +108,8 @@ function lookAtMessage() {
     (msgType == "MSG" &&
       !msgData.features.includes("moderator") &&
       checks(msgData)) ||
-    (isSubMsg(msgType) && settings.hideSub)
+    (isSubMsg(msgType) && settings.hideSub) ||
+    isNewUser(msgData)
   ) {
     msg = 'OBAMNA {data: "LULW"}';
   }
