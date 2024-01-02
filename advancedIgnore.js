@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Advanced Ignore
 // @namespace    https://www.destiny.gg/
-// @version      1.1.1
+// @version      1.1.2
 // @description  Adds more ignore settings (embeds, nsfw, separate ignore and harsh ignore, allow mentions to be shown)
 // @author       Fritz
 // @match        *://*.destiny.gg/embed/chat*
@@ -109,7 +109,7 @@ function lookAtMessage() {
       !msgData.features.includes("moderator") &&
       checks(msgData)) ||
     (settings.hideSub && isSubMsg(msgType)) ||
-    (settings.hideNewUser && isNewUser(msgData))
+    (settings.hideNewUsers && isNewUser(msgData))
   ) {
     msg = 'OBAMNA {data: "LULW"}';
   }
