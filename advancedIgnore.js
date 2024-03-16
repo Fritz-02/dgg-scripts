@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Advanced Ignore
 // @namespace    https://www.destiny.gg/
-// @version      1.1.2
+// @version      1.2.0
 // @description  Adds more ignore settings (embeds, nsfw, separate ignore and harsh ignore, allow mentions to be shown)
 // @author       Fritz
 // @match        *://*.destiny.gg/embed/chat*
@@ -64,9 +64,9 @@ let property = Object.getOwnPropertyDescriptor(MessageEvent.prototype, "data");
 const data = property.get;
 
 const isSubMsg = (msgType) =>
-  msgType == "SUBSCRIPTION" || msgType == "GIFTSUB" || msgType == "DONATION";
+  msgType == "SUBSCRIPTION" || msgType == "GIFTSUB" || msgType == "DONATION" || msgType == "MASSGIFT";
 
-const isNewUser = (msgData) => msgData.features.includes(newUserFlair);
+const isNewUser = (msgData) => msgData.features ? msgData.features.includes(newUserFlair) : false;
 
 const checkMention = (msgData) =>
   !(settings.mentionsEnabled && mentionRegex?.test(msgData.data));
